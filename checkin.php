@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Guestbook</title>
+    <title>Digital Guestbook - Valinka & Adi</title>
     <meta name="referrer" content="origin">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -16,202 +16,174 @@
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
         integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
     <style>
-        #reader {
+        body {
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            background-repeat: repeat;
+            font-family: 'Georgia', serif;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .fall-flowers {
+            position: fixed;
+            top: -10%;
             width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        #reader__dashboard_section_csr {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 0 0 12px 12px;
-        }
-
-        #successModal {
-            transition: opacity 0.5s ease;
-            opacity: 0;
+            height: 100%;
             pointer-events: none;
+            overflow: hidden;
+            z-index: 10;
         }
 
-        #successModal.show {
-            opacity: 1;
-            pointer-events: auto;
+        .flower {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('sakura.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: fall 10s linear infinite;
         }
 
-
-        .success-animation {
-            animation: successPulse 2s;
-        }
-
-        @keyframes successPulse {
+        @keyframes fall {
             0% {
-                box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7);
-            }
-
-            70% {
-                box-shadow: 0 0 0 15px rgba(52, 211, 153, 0);
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
             }
 
             100% {
-                box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
             }
         }
 
-        .floating-label {
-            position: relative;
-            margin-bottom: 20px;
+        .bg-gradient-romantic {
+            background: linear-gradient(to right, #F9D8D3, #F3A8B6, #F0B2A6);
         }
 
-        .floating-label input {
-            font-size: 16px;
-            padding: 20px 15px 10px;
-            display: block;
-            width: 100%;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            background: #f8fafc;
-            transition: all 0.2s;
+        .text-rose-700 {
+            color: #D13F77;
+            /* Soft rose color */
         }
 
-        .floating-label label {
-            color: #94a3b8;
-            font-size: 14px;
-            position: absolute;
-            pointer-events: none;
-            left: 15px;
-            top: 15px;
-            transition: 0.2s ease all;
+        .text-rose-500 {
+            color: #F96D82;
+            /* Soft pink rose */
         }
 
-        .floating-label input:focus~label,
-        .floating-label input:valid~label {
-            top: 5px;
-            font-size: 12px;
-            color: #6366f1;
+        .bg-rose-500 {
+            background-color: #F96D82;
         }
 
-        .floating-label input:focus {
-            outline: none;
-            border-color: #6366f1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        .bg-rose-100 {
+            background-color: #F9D8D3;
+        }
+
+        .border-rose-500 {
+            border-color: #F96D82;
+        }
+
+        .hover\:bg-rose-50:hover {
+            background-color: #F9E2E3;
         }
     </style>
 </head>
 
-<body class="bg-gradient-to-br from-indigo-50 to-blue-50 min-h-screen">
+<body class="bg-gradient-romantic min-h-screen font-serif">
     <div class="container mx-auto px-4 py-8">
         <div class="max-w-4xl mx-auto">
-            <!-- Header -->
             <div class="text-center mb-10">
-                <h1 class="text-4xl font-bold text-indigo-800 mb-2">Digital Guestbook</h1>
-                <p class="text-lg text-gray-600">Scan your QR code to check in automatically</p>
-                <div class="w-24 h-1 bg-indigo-500 rounded-full mx-auto mt-4"></div>
+                <h1 class="text-4xl font-bold text-rose-700 mb-2">Valinka & Adi's Guestbook</h1>
+                <p class="text-lg text-gray-600">Scan your QR code to share this beautiful day with us</p>
+                <div class="w-24 h-1 bg-rose-500 rounded-full mx-auto mt-4"></div>
             </div>
 
-            <!-- Main Content -->
             <div class="bg-white rounded-xl shadow-xl overflow-hidden">
                 <div class="md:flex">
-                    <!-- Scanner Section -->
-                    <div class="md:w-1/2 p-6 bg-indigo-50">
+                    <div class="md:w-1/2 p-6 bg-rose-50">
                         <div class="flex items-center justify-between mb-4">
-                            <h2 class="text-xl font-semibold text-indigo-800">QR Code Scanner</h2>
+                            <h2 class="text-xl font-semibold text-rose-700">QR Code Scanner</h2>
                             <button id="toggleCamera"
-                                class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm hover:bg-indigo-700 transition">
+                                class="bg-rose-500 text-white px-3 py-1 rounded-full text-sm hover:bg-rose-600 transition">
                                 <i class="fas fa-camera mr-1"></i> Toggle Camera
                             </button>
                         </div>
                         <div class="mb-4">
-                            <label for="cameraSelect" class="block text-sm font-medium text-indigo-800 mb-1">Select
-                                Camera</label>
+                            <label for="cameraSelect" class="block text-sm font-medium text-rose-700 mb-1">Select Camera</label>
                             <select id="cameraSelect"
-                                class="w-full rounded-lg border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                                class="w-full rounded-lg border-gray-300 focus:border-rose-500 focus:ring-rose-500">
                                 <option value="">Loading cameras...</option>
                             </select>
                         </div>
-
 
                         <div id="reader" class="mb-4"></div>
 
                         <div class="text-center">
                             <p class="text-gray-600 mb-3">Don't have a QR code?</p>
                             <button id="manualEntryBtn"
-                                class="bg-white text-indigo-600 border border-indigo-600 px-4 py-2 rounded-lg hover:bg-indigo-50 transition">
+                                class="bg-white text-rose-500 border border-rose-500 px-4 py-2 rounded-lg hover:bg-rose-50 transition">
                                 <i class="fas fa-keyboard mr-2"></i> Enter Manually
                             </button>
                         </div>
                     </div>
 
-                    <!-- Form Section -->
                     <div class="md:w-1/2 p-6">
                         <h2 class="text-xl font-semibold text-gray-800 mb-6">Guest Information</h2>
-
                         <form id="guestForm" class="space-y-6" method="post" action="javascript:void(0);">
-                            <!-- Full Name Field -->
-                            <div
-                                class="relative border border-gray-300 rounded-lg px-3 pt-4 pb-2 bg-white focus-within:ring-2 focus-within:ring-indigo-500">
+                            <div class="relative border border-gray-300 rounded-lg px-3 pt-4 pb-2 bg-white focus-within:ring-2 focus-within:ring-rose-500">
                                 <input type="text" id="name" name="name" required onchange="handleFormChange()"
                                     class="peer w-full bg-transparent focus:outline-none text-sm placeholder-transparent"
                                     placeholder="Full Name" />
                                 <label for="name"
-                                    class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-indigo-600">
+                                    class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-rose-500">
                                     Nama Lengkap
                                 </label>
                             </div>
 
-                            <!-- Check-in Time Field -->
-                            <div
-                                class="relative border border-gray-300 rounded-lg px-3 pt-4 pb-2 bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500">
-                                <input type="text" id="checkinTime" name="checkinTime" readonly
-                                    onchange="handleFormChange()"
+                            <div class="relative border border-gray-300 rounded-lg px-3 pt-4 pb-2 bg-gray-100 focus-within:ring-2 focus-within:ring-rose-500">
+                                <input type="text" id="checkinTime" name="checkinTime" readonly onchange="handleFormChange()"
                                     class="peer w-full bg-transparent focus:outline-none text-sm placeholder-transparent"
                                     placeholder="Check-in Time" />
                                 <label for="checkinTime"
-                                    class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-indigo-600">
+                                    class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-rose-500">
                                     Check-in Time
                                 </label>
                             </div>
-                            <div
-                                class="relative border border-gray-300 rounded-lg px-3 pt-4 pb-2 bg-white focus-within:ring-2 focus-within:ring-indigo-500">
-                                <input type="text" id="keterangan" name="keterangan" "
-                                class=" peer w-full bg-transparent focus:outline-none text-sm placeholder-transparent"
-                                    placeholder="Full Name" />
-                                <label for="keterangan"
-                                    class="absolute left-3 top-2 text-gray-500 text-xs transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:text-indigo-600">
-                                    Keterangan (opsional)
-                                </label>
-                            </div>
+
                             <button type="submit" id="submitBtn"
-                                class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition flex items-center justify-center">
-                                <i class="fas fa-user-check mr-2"></i> Check In
+                                class="w-full bg-rose-500 text-white py-3 px-4 rounded-2xl font-semibold hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-300 transition-all duration-300 ease-in-out flex items-center justify-center shadow-md">
+                                <i class="fas fa-heart mr-2 text-white"></i> Check In with Love
                             </button>
                         </form>
-
                     </div>
-
                 </div>
             </div>
 
-            <!-- Success Modal -->
-            <div id="successModal"
-                class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
                 <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 text-center">
-                    <div
-                        class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 success-animation">
-                        <i class="fas fa-check-circle text-green-500 text-4xl"></i>
+                    <div class="w-20 h-20 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
+                        <i class="fas fa-check-circle text-rose-500 text-4xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Check-in Successful!</h3>
-                    <p class="text-gray-600 mb-6">Thank you for signing our guestbook.</p>
-
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">You're In!</h3>
+                    <p class="text-gray-600 mb-6">Thanks for being a part of our special day.</p>
                 </div>
             </div>
         </div>
     </div>
+    <div class="fall-flowers">
+        <div class="flower" style="left:10%; animation-delay: 0s;"></div>
+        <div class="flower" style="left:25%; animation-delay: 2s;"></div>
+        <div class="flower" style="left:40%; animation-delay: 4s;"></div>
+        <div class="flower" style="left:55%; animation-delay: 1s;"></div>
+        <div class="flower" style="left:70%; animation-delay: 3s;"></div>
+        <div class="flower" style="left:85%; animation-delay: 5s;"></div>
+    </div>
+
+
 
     <script>
         function handleFormChange() {
@@ -228,16 +200,16 @@
 
             // Kirim data ke save.php menggunakan fetch
             fetch('save.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json', // Pastikan menggunakan JSON
-                },
-                body: JSON.stringify(formData)  // Kirim data sebagai JSON
-            })
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json', // Pastikan menggunakan JSON
+                    },
+                    body: JSON.stringify(formData) // Kirim data sebagai JSON
+                })
                 .then(response => response.json())
                 .then(data => {
                     console.log('Success:', data);
-                    showSuccessModal();  // Menampilkan modal sukses
+                    showSuccessModal(); // Menampilkan modal sukses
                 })
                 .catch((error) => {
                     console.error('Error:', error);
@@ -293,7 +265,7 @@
         }
 
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Initialize variables
             let scanner = null;
             let currentCameraId = null;
@@ -301,10 +273,13 @@
             let isManualEntry = false;
             const config = {
                 fps: 10,
-                qrbox: function (viewfinderWidth, viewfinderHeight) {
+                qrbox: function(viewfinderWidth, viewfinderHeight) {
                     const minEdgePercentage = 0.7; // gunakan 70% dari sisi terkecil
                     const minEdge = Math.min(viewfinderWidth, viewfinderHeight);
-                    return { width: minEdge * minEdgePercentage, height: minEdge * minEdgePercentage };
+                    return {
+                        width: minEdge * minEdgePercentage,
+                        height: minEdge * minEdgePercentage
+                    };
                 },
                 rememberLastUsedCamera: true,
                 supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
@@ -384,7 +359,7 @@
             }
 
             // Toggle between front and back camera
-            document.getElementById('toggleCamera').addEventListener('click', function () {
+            document.getElementById('toggleCamera').addEventListener('click', function() {
                 if (cameras.length > 1) {
                     scanner.stop().then(() => {
                         currentCameraId = currentCameraId === cameras[0].id ? cameras[1].id : cameras[0].id;
@@ -449,13 +424,13 @@
             }
 
             // Manual entry button
-            document.getElementById('manualEntryBtn').addEventListener('click', function () {
+            document.getElementById('manualEntryBtn').addEventListener('click', function() {
                 showManualEntry();
             });
 
             // Form submission (now triggered automatically after scan)
-            document.getElementById('submitBtn').addEventListener('click', function (e) {
-                e.preventDefault();  // Mencegah pengiriman form secara tradisional (menggunakan GET)
+            document.getElementById('submitBtn').addEventListener('click', function(e) {
+                e.preventDefault(); // Mencegah pengiriman form secara tradisional (menggunakan GET)
 
                 const submitBtn = document.getElementById('submitBtn');
                 submitBtn.disabled = true;
@@ -470,16 +445,16 @@
 
                 // Kirim data ke save.php menggunakan fetch
                 fetch('save.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json', // Pastikan menggunakan JSON
-                    },
-                    body: JSON.stringify(formData)  // Kirim data sebagai JSON
-                })
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json', // Pastikan menggunakan JSON
+                        },
+                        body: JSON.stringify(formData) // Kirim data sebagai JSON
+                    })
                     .then(response => response.json())
                     .then(data => {
                         console.log('Success:', data);
-                        showSuccessModal();  // Menampilkan modal sukses
+                        showSuccessModal(); // Menampilkan modal sukses
                     })
                     .catch((error) => {
                         console.error('Error:', error);
@@ -497,7 +472,7 @@
             function showSuccessModal() {
                 document.getElementById('successModal').classList.remove('hidden');
             }
-            document.getElementById('cameraSelect').addEventListener('change', function (e) {
+            document.getElementById('cameraSelect').addEventListener('change', function(e) {
                 const selectedCameraId = e.target.value;
                 if (selectedCameraId && selectedCameraId !== currentCameraId) {
                     scanner.stop().then(() => {
@@ -510,18 +485,18 @@
             });
 
 
-            // Close modal
-            document.getElementById('closeModal').addEventListener('click', function () {
-                document.getElementById('successModal').classList.add('hidden');
+            // // Close modal
+            // document.getElementById('closeModal').addEventListener('click', function() {
+            //     document.getElementById('successModal').classList.add('hidden');
 
-                // Reset form and restart scanner (unless in manual mode)
-                document.getElementById('guestForm').reset();
-                document.getElementById('checkinTime').value = new Date().toLocaleString();
+            //     // Reset form and restart scanner (unless in manual mode)
+            //     document.getElementById('guestForm').reset();
+            //     document.getElementById('checkinTime').value = new Date().toLocaleString();
 
-                if (!isManualEntry && scanner) {
-                    initScanner();
-                }
-            });
+            //     if (!isManualEntry && scanner) {
+            //         initScanner();
+            //     }
+            // });
 
             // Initialize scanner on page load
             initScanner();
